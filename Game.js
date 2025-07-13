@@ -29,7 +29,7 @@ function play() {
 function iniciarJogo() {
     
         
-    let opcao,nome,valor = 0;
+    let opcao,nome,valor = 0,acertos = 0,erros = 0;
 
     console.log("SEJA BEM VINDO AO JOGO DO TRILÃO");
     console.log("MAS ANTES VAMOS PEGAR ALGUNS DOS SEUS DADOS PARA USOS FUTUROS.....");
@@ -52,23 +52,41 @@ function iniciarJogo() {
                     console.log(`Iniciando o jogo para ${nome}...`);
                     const primeiraPergunta = play();
                     console.log(primeiraPergunta[i].pergunta);
-                    console.log(primeiraPergunta[i].opcoes);
                     console.log(primeiraPergunta[i].premiaco);
-
-                    resposta = prompt("qua opção e a correta?: ");
-                    if(resposta == primeiraPergunta[i].respostaCorreta){
-                        console.log("acertou!!!");
-                        valor += primeiraPergunta[i].valor;
-                    }else{
-                        console.log("errou!!!");
-                    }
-                    console.log(`player ${nome} conseguiu $${valor}`);
+                    console.log(primeiraPergunta[i].opcoes);
                     console.log("deseja parar???[S]/[N]");
                     parar = prompt();
                     if(parar == 'S' || parar == 's'){
+                        valor += 25;
+                        
+                        console.log("--------------------dados da partida--------------------");
+                        console.log(`player ${nome} `);
+                        console.log(`conseguiu $${valor}`);
+                        console.log(`acertou ${acertos} perguntas`);
+                        console.log(`errou ${erros} perguntas`);
+                        console.log(`parou na rodada n`);
+                        console.log("--------------------------------------------------------");
                         break;
                     }
+                    resposta = prompt("qua opção e a correta?: ");
+                    if(resposta == primeiraPergunta[i].respostaCorreta){
+                        valor += primeiraPergunta[i].valor;
+                        acertos+=1;
+                        console.log("acertou!!!");
+
+                    }else{
+                        erros+=1;
+                        console.log("errou!!!");
+                    }
+                    
                 }  
+                console.log("--------------------dados da partida--------------------");
+                console.log(`player ${nome} `);
+                console.log(`conseguiu $${valor}`);
+                console.log(`acertou ${acertos} perguntas`);
+                console.log(`errou ${erros} perguntas`);
+                console.log(`parou na rodada n`);
+                console.log("--------------------------------------------------------");
                 break;
             case '2':
                 console.log("Exibindo ranking...");
