@@ -1,0 +1,23 @@
+{
+  "name": "jogo_do_milhao",
+  "version": "1.0.0",
+  "description": "- Gustavo Rodrigues Moreira\r - Regras do Jogo\r - Como jogar\r - Como executar\r - Créditos - Fontes de referência utilizadas\r - Licença do projeto",
+  "main": "Game.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Gust77vo/Jogo_do_Milhao.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Gust77vo/Jogo_do_Milhao/issues"
+  },
+  "homepage": "https://github.com/Gust77vo/Jogo_do_Milhao#readme",
+  "dependencies": {
+    "prompt-sync": "^4.2.0"
+  }
+}
