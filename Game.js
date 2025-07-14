@@ -185,10 +185,11 @@ function play() {
 }
 function gerarNumeroAleatorioNaoRepetido(min, max) {
     if (numerosJaGerados.size === (max - min + 1)) {
-        return null;
+        numerosJaGerados.clear();
     }
 
     let numero;
+    
     do {
         numero = Math.floor(Math.random() * (max - min + 1)) + min;
     } while (numerosJaGerados.has(numero));
@@ -203,11 +204,12 @@ function iniciarJogo() {
     let opcao,nome,valor = 0,acertos = 0,erros = 0;
 
     console.log("SEJA BEM VINDO AO JOGO DO TRILÃO");
-    console.log("MAS ANTES VAMOS PEGAR ALGUNS DOS SEUS DADOS PARA USOS FUTUROS.....");
-    console.log("NOS INFORME SEU nome ");
-    nome = prompt();
+    
+    
 
     do {
+        console.log("NOS INFORME SEU NOME");
+        nome = prompt();
         console.log("--------------------------MENU--------------------------");
         console.log("1 - INICIAR JOGO");
         console.log("2 - VER RANKING");
@@ -217,41 +219,44 @@ function iniciarJogo() {
 
         switch (opcao) {
             case '1':
+                //**loop de rodada */
+                for(let j = 0;j <=4;j++){
+                    console.log(`rodada ${j+1}!!!!`)
+                    //**loop de pergunta */
+                    for(let i =0; i<=4;i++){
+                        let resposta;
+                        console.log(`Iniciando o jogo para ${nome}...`);
+                        const primeiraPergunta = play();
+                        let a = gerarNumeroAleatorioNaoRepetido(1, 24);
+                        console.log(primeiraPergunta[a].pergunta);
+                        console.log(primeiraPergunta[a].premiaco);
+                        console.log(primeiraPergunta[a].opcoes);
+                        console.log("deseja parar???[S]/[N]");
+                        parar = prompt();
+                        if(parar == 'S' || parar == 's'){
+                            valor += 25;
+                            break;
+                        }
+                        resposta = prompt("qua opção e a correta?: ");
+                        if(resposta == primeiraPergunta[a].respostaCorreta){
+                            valor += primeiraPergunta[a].valor;
+                            acertos+=1;
+                            console.log("acertou!!!");
 
-                for(let i =0; i<=4;i++){
-                    let resposta;
-                    console.log(`Iniciando o jogo para ${nome}...`);
-                    const primeiraPergunta = play();
-                    let a = gerarNumeroAleatorioNaoRepetido(1, 5);
-                    console.log(primeiraPergunta[a].pergunta);
-                    console.log(primeiraPergunta[a].premiaco);
-                    console.log(primeiraPergunta[a].opcoes);
-                    console.log("deseja parar???[S]/[N]");
-                    parar = prompt();
-                    if(parar == 'S' || parar == 's'){
-                        valor += 25;
-                        
-                        console.log("--------------------dados da partida--------------------");
-                        console.log(`player ${nome} `);
-                        console.log(`conseguiu $${valor}`);
-                        console.log(`acertou ${acertos} perguntas`);
-                        console.log(`errou ${erros} perguntas`);
-                        console.log(`parou na rodada n`);
-                        console.log("--------------------------------------------------------");
+                        }else{
+                            erros+=1;
+                            console.log("errou!!!");
+                        }
+                    } 
+                    //**loop de pergunta */
+                    console.log("deseja continuar para a proxima rodada???");
+                    resposta = prompt("[S]/[N]");
+                    if(resposta == 'N' || resposta == 'n'){
                         break;
                     }
-                    resposta = prompt("qua opção e a correta?: ");
-                    if(resposta == primeiraPergunta[a].respostaCorreta){
-                        valor += primeiraPergunta[a].valor;
-                        acertos+=1;
-                        console.log("acertou!!!");
-
-                    }else{
-                        erros+=1;
-                        console.log("errou!!!");
-                    }
                     
-                }  
+                }   
+                //**loop de rodada */
                 console.log("--------------------dados da partida--------------------");
                 console.log(`player ${nome} `);
                 console.log(`conseguiu $${valor}`);
@@ -259,9 +264,15 @@ function iniciarJogo() {
                 console.log(`errou ${erros} perguntas`);
                 console.log(`parou na rodada n`);
                 console.log("--------------------------------------------------------");
+
+                valor = 0;
+                acertos = 0;
+                erros = 0;
+
                 break;
+
             case '2':
-                console.log("Exibindo ranking...");
+                console.log("[critical---ERROR@##$$##] = dados indisponiveis no momento...");
                 break;
             case '3':
                 console.log("Saindo do jogo. falou seu pola!");
