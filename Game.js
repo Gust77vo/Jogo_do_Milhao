@@ -1,7 +1,6 @@
 const prompt = require('prompt-sync')({ sigint: true });
 let numerosJaGerados = new Set();
-let ranking = []; // Adicionado para o ranking
-
+let ranking = []; 
 function play() {
     const perguntasDoMilhao = [
         {
@@ -9,7 +8,7 @@ function play() {
             opcoes: ["(a)Rio de Janeiro", "(b)São Paulo", "(c)Brasília", "(d)Belo Horizonte"],
             premiaco: ["acertou: $100,00", "errou: $0,00", "parou: $25,00"], // Estes valores serão sobrescritos pela lógica da rodada
             respostaCorreta: "c",
-            valor: 100 // Valor base, será multiplicado
+            valor: 100 
         },
         {
             pergunta: "Quem pintou a Mona Lisa?",
@@ -201,13 +200,13 @@ function iniciarJogo() {
     let nomeJogador;
     let jogarNovamente = 'S';
 
-    // Loop para permitir jogar novamente
+    
     while (jogarNovamente.toUpperCase() === 'S') {
-        let valorAcumulado = 0; // Valor acumulado para a sessão atual do jogo
+        let valorAcumulado = 0; 
         let acertos = 0;
         let erros = 0;
-        let rodadaQueParou = 0; // Rodada em que o jogador parou ou errou
-        let ultimaRespostaCorreta = ''; // Para armazenar a resposta correta da última pergunta
+        let rodadaQueParou = 0; 
+        let ultimaRespostaCorreta = '';
 
         console.log("SEJA BEM VINDO AO JOGO DO TRILHÃO!");
 
